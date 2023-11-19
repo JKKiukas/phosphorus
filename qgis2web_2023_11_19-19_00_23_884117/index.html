@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Phosphorus2023_2.js"></script>
+        <script src="data/Phosphorus2022_3.js"></script>
+        <script src="data/Phosphorus2021_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:5
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 5,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        map.createPane('pane_Interpolation_1');
+        map.getPane('pane_Interpolation_1').style.zIndex = 401;
+        var img_Interpolation_1 = 'data/Interpolation_1.png';
+        var img_bounds_Interpolation_1 = [[59.436599564,19.050983203],[70.05562944,31.572382137999995]];
+        var layer_Interpolation_1 = new L.imageOverlay(img_Interpolation_1,
+                                              img_bounds_Interpolation_1,
+                                              {pane: 'pane_Interpolation_1'});
+        bounds_group.addLayer(layer_Interpolation_1);
+        map.addLayer(layer_Interpolation_1);
+        function pop_Phosphorus2023_2(feature, layer) {
+            var popupContent = '<div style="width: 900px;">' +
+			'<table>\
+                    <tr>\
+                        <th scope="row">Measurement time</th>\
+                        <td>' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Value</th>\
+                        <td>' + (feature.properties['value'] !== null ? autolinker.link(feature.properties['value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site Depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Total Depth</th>\
+                        <td>' + (feature.properties['totalDepthM'] !== null ? autolinker.link(feature.properties['totalDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Laboratory</th>\
+                        <td>' + (feature.properties['laboratory'] !== null ? autolinker.link(feature.properties['laboratory'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Phosphorus2023_2_0() {
+            return {
+                pane: 'pane_Phosphorus2023_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,118,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Phosphorus2023_2');
+        map.getPane('pane_Phosphorus2023_2').style.zIndex = 402;
+        map.getPane('pane_Phosphorus2023_2').style['mix-blend-mode'] = 'normal';
+        var layer_Phosphorus2023_2 = new L.geoJson(json_Phosphorus2023_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Phosphorus2023_2',
+            layerName: 'layer_Phosphorus2023_2',
+            pane: 'pane_Phosphorus2023_2',
+            onEachFeature: pop_Phosphorus2023_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Phosphorus2023_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Phosphorus2023_2);
+        map.addLayer(layer_Phosphorus2023_2);
+        function pop_Phosphorus2022_3(feature, layer) {
+            var popupContent = '<div style="width: 900px;">' +
+			'<table>\
+                    <tr>\
+                        <th scope="row">Measurement time</th>\
+                        <td>' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Value</th>\
+                        <td>' + (feature.properties['value'] !== null ? autolinker.link(feature.properties['value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Total depth</th>\
+                        <td>' + (feature.properties['totalDepthM'] !== null ? autolinker.link(feature.properties['totalDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Laboratory</th>\
+                        <td>' + (feature.properties['laboratory'] !== null ? autolinker.link(feature.properties['laboratory'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Phosphorus2022_3_0() {
+            return {
+                pane: 'pane_Phosphorus2022_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(65,233,70,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Phosphorus2022_3');
+        map.getPane('pane_Phosphorus2022_3').style.zIndex = 403;
+        map.getPane('pane_Phosphorus2022_3').style['mix-blend-mode'] = 'normal';
+        var layer_Phosphorus2022_3 = new L.geoJson(json_Phosphorus2022_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Phosphorus2022_3',
+            layerName: 'layer_Phosphorus2022_3',
+            pane: 'pane_Phosphorus2022_3',
+            onEachFeature: pop_Phosphorus2022_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Phosphorus2022_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Phosphorus2022_3);
+        map.addLayer(layer_Phosphorus2022_3);
+        function pop_Phosphorus2021_4(feature, layer) {
+            var popupContent = '<div style="width: 900px;">' +
+			'<table>\
+                    <tr>\
+                        <th scope="row">Measurement time</th>\
+                        <td>' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Value</th>\
+                        <td>' + (feature.properties['value'] !== null ? autolinker.link(feature.properties['value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Total depth</th>\
+                        <td>' + (feature.properties['totalDepthM'] !== null ? autolinker.link(feature.properties['totalDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Laboratory</th>\
+                        <td>' + (feature.properties['laboratory'] !== null ? autolinker.link(feature.properties['laboratory'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Phosphorus2021_4_0() {
+            return {
+                pane: 'pane_Phosphorus2021_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,255,173,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Phosphorus2021_4');
+        map.getPane('pane_Phosphorus2021_4').style.zIndex = 404;
+        map.getPane('pane_Phosphorus2021_4').style['mix-blend-mode'] = 'normal';
+        var layer_Phosphorus2021_4 = new L.geoJson(json_Phosphorus2021_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Phosphorus2021_4',
+            layerName: 'layer_Phosphorus2021_4',
+            pane: 'pane_Phosphorus2021_4',
+            onEachFeature: pop_Phosphorus2021_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Phosphorus2021_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Phosphorus2021_4);
+        map.addLayer(layer_Phosphorus2021_4);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Phosphorus2021_4.png" /> Phosphorus 2021': layer_Phosphorus2021_4,'<img src="legend/Phosphorus2022_3.png" /> Phosphorus 2022': layer_Phosphorus2022_3,'<img src="legend/Phosphorus2023_2.png" /> Phosphorus 2023': layer_Phosphorus2023_2,"Interpolation": layer_Interpolation_1,"Map": layer_OSMStandard_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
