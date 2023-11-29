@@ -1,1 +1,3 @@
 # phosphorus
+
+In order to see the graphs on a local computer you need to modify PhosphorusViurilanlahti2022_12.js file which can be found from a folder called data. The graphs can be found from the Graphs_Viurilanlahti2022 folder and you need to copy each graph's file path and paste it to PhosphorusViurilanlahti2022_12.js file in the "NutrientLoadOverTheSummer" sections. When you copy the file path of the graph it most likely have "\" in the path but this needs to be changed to "/".

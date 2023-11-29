@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Map_0.js"></script>
+        <script src="data/Rivers_2.js"></script>
+        <script src="data/Roads_3.js"></script>
+        <script src="data/PhosphorusPaimionselk2021_8.js"></script>
+        <script src="data/PhosphorusPaimionselk2022_9.js"></script>
+        <script src="data/PhosphorusPaimionselk2023_10.js"></script>
+        <script src="data/PhosphorusViurilanlahti2021_11.js"></script>
+        <script src="data/PhosphorusViurilanlahti2022_12.js"></script>
+        <script src="data/PhosphorusViurilanlahti2023_13.js"></script>
+        <script src="data/PhosphorusMynlahti2021_14.js"></script>
+        <script src="data/PhosphorusMynlahti2022_15.js"></script>
+        <script src="data/PhosphorusMynlahti2023_16.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:5
+        }).fitBounds([[58.155562590865614,13.014061023484917],[61.93659851069944,22.937134916976497]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_Map_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kohderyhma'] !== null ? autolinker.link(feature.properties['Kohderyhma'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kohdeluokk'] !== null ? autolinker.link(feature.properties['Kohdeluokk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Korkeus'] !== null ? autolinker.link(feature.properties['Korkeus'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Map_0_0() {
+            return {
+                pane: 'pane_Map_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,239,239,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Map_0');
+        map.getPane('pane_Map_0').style.zIndex = 400;
+        map.getPane('pane_Map_0').style['mix-blend-mode'] = 'normal';
+        var layer_Map_0 = new L.geoJson(json_Map_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Map_0',
+            layerName: 'layer_Map_0',
+            pane: 'pane_Map_0',
+            onEachFeature: pop_Map_0,
+            style: style_Map_0_0,
+        });
+        bounds_group.addLayer(layer_Map_0);
+        map.addLayer(layer_Map_0);
+        map.createPane('pane_PotentialFieldErosion_1');
+        map.getPane('pane_PotentialFieldErosion_1').style.zIndex = 401;
+        var img_PotentialFieldErosion_1 = 'data/PotentialFieldErosion_1.png';
+        var img_bounds_PotentialFieldErosion_1 = [[60.08408253955141,21.450471318750466],[60.757130839568866,23.20629261815411]];
+        var layer_PotentialFieldErosion_1 = new L.imageOverlay(img_PotentialFieldErosion_1,
+                                              img_bounds_PotentialFieldErosion_1,
+                                              {pane: 'pane_PotentialFieldErosion_1'});
+        bounds_group.addLayer(layer_PotentialFieldErosion_1);
+        map.addLayer(layer_PotentialFieldErosion_1);
+        function pop_Rivers_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Kohderyhma</th>\
+                        <td>' + (feature.properties['Kohderyhma'] !== null ? autolinker.link(feature.properties['Kohderyhma'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kohdeluokk</th>\
+                        <td>' + (feature.properties['Kohdeluokk'] !== null ? autolinker.link(feature.properties['Kohdeluokk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Rivers_2_0() {
+            return {
+                pane: 'pane_Rivers_2',
+                opacity: 1,
+                color: 'rgba(111,140,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Rivers_2');
+        map.getPane('pane_Rivers_2').style.zIndex = 402;
+        map.getPane('pane_Rivers_2').style['mix-blend-mode'] = 'normal';
+        var layer_Rivers_2 = new L.geoJson(json_Rivers_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Rivers_2',
+            layerName: 'layer_Rivers_2',
+            pane: 'pane_Rivers_2',
+            onEachFeature: pop_Rivers_2,
+            style: style_Rivers_2_0,
+        });
+        bounds_group.addLayer(layer_Rivers_2);
+        map.addLayer(layer_Rivers_2);
+        function pop_Roads_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kohderyhma'] !== null ? autolinker.link(feature.properties['Kohderyhma'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kohdeluokk'] !== null ? autolinker.link(feature.properties['Kohdeluokk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tieluokka'] !== null ? autolinker.link(feature.properties['Tieluokka'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tienumero'] !== null ? autolinker.link(feature.properties['Tienumero'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Roads_3_0() {
+            return {
+                pane: 'pane_Roads_3',
+                opacity: 1,
+                color: 'rgba(109,109,109,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Roads_3');
+        map.getPane('pane_Roads_3').style.zIndex = 403;
+        map.getPane('pane_Roads_3').style['mix-blend-mode'] = 'normal';
+        var layer_Roads_3 = new L.geoJson(json_Roads_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Roads_3',
+            layerName: 'layer_Roads_3',
+            pane: 'pane_Roads_3',
+            onEachFeature: pop_Roads_3,
+            style: style_Roads_3_0,
+        });
+        bounds_group.addLayer(layer_Roads_3);
+        map.addLayer(layer_Roads_3);
+        map.createPane('pane_InterpolationPaimionselk2021_4');
+        map.getPane('pane_InterpolationPaimionselk2021_4').style.zIndex = 404;
+        var img_InterpolationPaimionselk2021_4 = 'data/InterpolationPaimionselk2021_4.png';
+        var img_bounds_InterpolationPaimionselk2021_4 = [[59.680741521,21.685018382],[60.424195351,23.436461213]];
+        var layer_InterpolationPaimionselk2021_4 = new L.imageOverlay(img_InterpolationPaimionselk2021_4,
+                                              img_bounds_InterpolationPaimionselk2021_4,
+                                              {pane: 'pane_InterpolationPaimionselk2021_4'});
+        bounds_group.addLayer(layer_InterpolationPaimionselk2021_4);
+        map.addLayer(layer_InterpolationPaimionselk2021_4);
+        map.createPane('pane_InterpolationViurilanlahti2021_5');
+        map.getPane('pane_InterpolationViurilanlahti2021_5').style.zIndex = 405;
+        var img_InterpolationViurilanlahti2021_5 = 'data/InterpolationViurilanlahti2021_5.png';
+        var img_bounds_InterpolationViurilanlahti2021_5 = [[59.680682889957,21.685023284044],[60.424231020256,23.436474277288]];
+        var layer_InterpolationViurilanlahti2021_5 = new L.imageOverlay(img_InterpolationViurilanlahti2021_5,
+                                              img_bounds_InterpolationViurilanlahti2021_5,
+                                              {pane: 'pane_InterpolationViurilanlahti2021_5'});
+        bounds_group.addLayer(layer_InterpolationViurilanlahti2021_5);
+        map.addLayer(layer_InterpolationViurilanlahti2021_5);
+        map.createPane('pane_InterpolationViurilanlahti2022_6');
+        map.getPane('pane_InterpolationViurilanlahti2022_6').style.zIndex = 406;
+        var img_InterpolationViurilanlahti2022_6 = 'data/InterpolationViurilanlahti2022_6.png';
+        var img_bounds_InterpolationViurilanlahti2022_6 = [[59.680682889957,21.685023284044],[60.424231020256,23.436474277288]];
+        var layer_InterpolationViurilanlahti2022_6 = new L.imageOverlay(img_InterpolationViurilanlahti2022_6,
+                                              img_bounds_InterpolationViurilanlahti2022_6,
+                                              {pane: 'pane_InterpolationViurilanlahti2022_6'});
+        bounds_group.addLayer(layer_InterpolationViurilanlahti2022_6);
+        map.addLayer(layer_InterpolationViurilanlahti2022_6);
+        map.createPane('pane_InterpolationMynlahti2021_7');
+        map.getPane('pane_InterpolationMynlahti2021_7').style.zIndex = 407;
+        var img_InterpolationMynlahti2021_7 = 'data/InterpolationMynlahti2021_7.png';
+        var img_bounds_InterpolationMynlahti2021_7 = [[60.068847594436,21.418661488014],[60.747562528693,23.248405004727]];
+        var layer_InterpolationMynlahti2021_7 = new L.imageOverlay(img_InterpolationMynlahti2021_7,
+                                              img_bounds_InterpolationMynlahti2021_7,
+                                              {pane: 'pane_InterpolationMynlahti2021_7'});
+        bounds_group.addLayer(layer_InterpolationMynlahti2021_7);
+        map.addLayer(layer_InterpolationMynlahti2021_7);
+        function pop_PhosphorusPaimionselk2021_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample Depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusPaimionselk2021_8_0() {
+            return {
+                pane: 'pane_PhosphorusPaimionselk2021_8',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusPaimionselk2021_8');
+        map.getPane('pane_PhosphorusPaimionselk2021_8').style.zIndex = 408;
+        map.getPane('pane_PhosphorusPaimionselk2021_8').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusPaimionselk2021_8 = new L.geoJson(json_PhosphorusPaimionselk2021_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusPaimionselk2021_8',
+            layerName: 'layer_PhosphorusPaimionselk2021_8',
+            pane: 'pane_PhosphorusPaimionselk2021_8',
+            onEachFeature: pop_PhosphorusPaimionselk2021_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusPaimionselk2021_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusPaimionselk2021_8);
+        map.addLayer(layer_PhosphorusPaimionselk2021_8);
+        function pop_PhosphorusPaimionselk2022_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusPaimionselk2022_9_0() {
+            return {
+                pane: 'pane_PhosphorusPaimionselk2022_9',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,255,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusPaimionselk2022_9');
+        map.getPane('pane_PhosphorusPaimionselk2022_9').style.zIndex = 409;
+        map.getPane('pane_PhosphorusPaimionselk2022_9').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusPaimionselk2022_9 = new L.geoJson(json_PhosphorusPaimionselk2022_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusPaimionselk2022_9',
+            layerName: 'layer_PhosphorusPaimionselk2022_9',
+            pane: 'pane_PhosphorusPaimionselk2022_9',
+            onEachFeature: pop_PhosphorusPaimionselk2022_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusPaimionselk2022_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusPaimionselk2022_9);
+        map.addLayer(layer_PhosphorusPaimionselk2022_9);
+        function pop_PhosphorusPaimionselk2023_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusPaimionselk2023_10_0() {
+            return {
+                pane: 'pane_PhosphorusPaimionselk2023_10',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,255,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusPaimionselk2023_10');
+        map.getPane('pane_PhosphorusPaimionselk2023_10').style.zIndex = 410;
+        map.getPane('pane_PhosphorusPaimionselk2023_10').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusPaimionselk2023_10 = new L.geoJson(json_PhosphorusPaimionselk2023_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusPaimionselk2023_10',
+            layerName: 'layer_PhosphorusPaimionselk2023_10',
+            pane: 'pane_PhosphorusPaimionselk2023_10',
+            onEachFeature: pop_PhosphorusPaimionselk2023_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusPaimionselk2023_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusPaimionselk2023_10);
+        map.addLayer(layer_PhosphorusPaimionselk2023_10);
+        function pop_PhosphorusViurilanlahti2021_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusViurilanlahti2021_11_0() {
+            return {
+                pane: 'pane_PhosphorusViurilanlahti2021_11',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusViurilanlahti2021_11');
+        map.getPane('pane_PhosphorusViurilanlahti2021_11').style.zIndex = 411;
+        map.getPane('pane_PhosphorusViurilanlahti2021_11').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusViurilanlahti2021_11 = new L.geoJson(json_PhosphorusViurilanlahti2021_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusViurilanlahti2021_11',
+            layerName: 'layer_PhosphorusViurilanlahti2021_11',
+            pane: 'pane_PhosphorusViurilanlahti2021_11',
+            onEachFeature: pop_PhosphorusViurilanlahti2021_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusViurilanlahti2021_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusViurilanlahti2021_11);
+        map.addLayer(layer_PhosphorusViurilanlahti2021_11);
+        function pop_PhosphorusViurilanlahti2022_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte Name</th>\
+                        <td>' + (feature.properties['AnalyteName'] !== null ? autolinker.link(feature.properties['AnalyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['MeanValue'] !== null ? autolinker.link(feature.properties['MeanValue'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['Unit'] !== null ? autolinker.link(feature.properties['Unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['SiteID'] !== null ? autolinker.link(feature.properties['SiteID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['Site'] !== null ? autolinker.link(feature.properties['Site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['SampleDepth'] !== null ? autolinker.link(feature.properties['SampleDepth'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['SampleDepthUpper'] !== null ? autolinker.link(feature.properties['SampleDepthUpper'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['SiteDepth'] !== null ? autolinker.link(feature.properties['SiteDepth'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['DataSource'] !== null ? autolinker.link(feature.properties['DataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nutrient load over the summer</th>\
+                        <td>' + (feature.properties['NutrientLoadOverTheSummer'] !== null ? '<a href="' + feature.properties['NutrientLoadOverTheSummer'] + '" target="_blank"><img src="' + feature.properties['NutrientLoadOverTheSummer'] + '" alt="Nutrient Load Image" style="max-width:100%; max-height:200px;"></a>' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusViurilanlahti2022_12_0() {
+            return {
+                pane: 'pane_PhosphorusViurilanlahti2022_12',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,255,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusViurilanlahti2022_12');
+        map.getPane('pane_PhosphorusViurilanlahti2022_12').style.zIndex = 412;
+        map.getPane('pane_PhosphorusViurilanlahti2022_12').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusViurilanlahti2022_12 = new L.geoJson(json_PhosphorusViurilanlahti2022_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusViurilanlahti2022_12',
+            layerName: 'layer_PhosphorusViurilanlahti2022_12',
+            pane: 'pane_PhosphorusViurilanlahti2022_12',
+            onEachFeature: pop_PhosphorusViurilanlahti2022_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusViurilanlahti2022_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusViurilanlahti2022_12);
+        map.addLayer(layer_PhosphorusViurilanlahti2022_12);
+        function pop_PhosphorusViurilanlahti2023_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusViurilanlahti2023_13_0() {
+            return {
+                pane: 'pane_PhosphorusViurilanlahti2023_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,255,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusViurilanlahti2023_13');
+        map.getPane('pane_PhosphorusViurilanlahti2023_13').style.zIndex = 413;
+        map.getPane('pane_PhosphorusViurilanlahti2023_13').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusViurilanlahti2023_13 = new L.geoJson(json_PhosphorusViurilanlahti2023_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusViurilanlahti2023_13',
+            layerName: 'layer_PhosphorusViurilanlahti2023_13',
+            pane: 'pane_PhosphorusViurilanlahti2023_13',
+            onEachFeature: pop_PhosphorusViurilanlahti2023_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusViurilanlahti2023_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusViurilanlahti2023_13);
+        map.addLayer(layer_PhosphorusViurilanlahti2023_13);
+        function pop_PhosphorusMynlahti2021_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusMynlahti2021_14_0() {
+            return {
+                pane: 'pane_PhosphorusMynlahti2021_14',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusMynlahti2021_14');
+        map.getPane('pane_PhosphorusMynlahti2021_14').style.zIndex = 414;
+        map.getPane('pane_PhosphorusMynlahti2021_14').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusMynlahti2021_14 = new L.geoJson(json_PhosphorusMynlahti2021_14, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusMynlahti2021_14',
+            layerName: 'layer_PhosphorusMynlahti2021_14',
+            pane: 'pane_PhosphorusMynlahti2021_14',
+            onEachFeature: pop_PhosphorusMynlahti2021_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusMynlahti2021_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusMynlahti2021_14);
+        map.addLayer(layer_PhosphorusMynlahti2021_14);
+        function pop_PhosphorusMynlahti2022_15(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample dept hupper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusMynlahti2022_15_0() {
+            return {
+                pane: 'pane_PhosphorusMynlahti2022_15',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,255,1,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusMynlahti2022_15');
+        map.getPane('pane_PhosphorusMynlahti2022_15').style.zIndex = 415;
+        map.getPane('pane_PhosphorusMynlahti2022_15').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusMynlahti2022_15 = new L.geoJson(json_PhosphorusMynlahti2022_15, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusMynlahti2022_15',
+            layerName: 'layer_PhosphorusMynlahti2022_15',
+            pane: 'pane_PhosphorusMynlahti2022_15',
+            onEachFeature: pop_PhosphorusMynlahti2022_15,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusMynlahti2022_15_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusMynlahti2022_15);
+        map.addLayer(layer_PhosphorusMynlahti2022_15);
+        function pop_PhosphorusMynlahti2023_16(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Analyte name</th>\
+                        <td>' + (feature.properties['analyteName'] !== null ? autolinker.link(feature.properties['analyteName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Mean value</th>\
+                        <td>' + (feature.properties['mean value'] !== null ? autolinker.link(feature.properties['mean value'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unit</th>\
+                        <td>' + (feature.properties['unit'] !== null ? autolinker.link(feature.properties['unit'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site ID</th>\
+                        <td>' + (feature.properties['siteId'] !== null ? autolinker.link(feature.properties['siteId'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site</th>\
+                        <td>' + (feature.properties['site'] !== null ? autolinker.link(feature.properties['site'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['siteLatitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLatitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['siteLongitudeWGS84'] !== null ? autolinker.link(feature.properties['siteLongitudeWGS84'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth</th>\
+                        <td>' + (feature.properties['sampleDepthM'] !== null ? autolinker.link(feature.properties['sampleDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sample depth upper</th>\
+                        <td>' + (feature.properties['sampleDepthUpperM'] !== null ? autolinker.link(feature.properties['sampleDepthUpperM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Site depth</th>\
+                        <td>' + (feature.properties['siteDepthM'] !== null ? autolinker.link(feature.properties['siteDepthM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Data source</th>\
+                        <td>' + (feature.properties['dataSource'] !== null ? autolinker.link(feature.properties['dataSource'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PhosphorusMynlahti2023_16_0() {
+            return {
+                pane: 'pane_PhosphorusMynlahti2023_16',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,255,238,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PhosphorusMynlahti2023_16');
+        map.getPane('pane_PhosphorusMynlahti2023_16').style.zIndex = 416;
+        map.getPane('pane_PhosphorusMynlahti2023_16').style['mix-blend-mode'] = 'normal';
+        var layer_PhosphorusMynlahti2023_16 = new L.geoJson(json_PhosphorusMynlahti2023_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PhosphorusMynlahti2023_16',
+            layerName: 'layer_PhosphorusMynlahti2023_16',
+            pane: 'pane_PhosphorusMynlahti2023_16',
+            onEachFeature: pop_PhosphorusMynlahti2023_16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PhosphorusMynlahti2023_16_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PhosphorusMynlahti2023_16);
+        map.addLayer(layer_PhosphorusMynlahti2023_16);
+            var abstract = new L.Control({'position':'bottomleft'});
+            abstract.onAdd = function (map) {
+                this._div = L.DomUtil.create('div',
+                'leaflet-control abstract');
+                this._div.id = 'abstract'
+                    this._div.setAttribute("onmouseenter", "abstract.show()");
+                    this._div.setAttribute("onmouseleave", "abstract.hide()");
+                    this.hide();
+                    return this._div;
+                };
+                abstract.hide = function () {
+                    this._div.classList.remove("abstractUncollapsed");
+                    this._div.classList.add("abstract");
+                    this._div.innerHTML = 'i'
+                }
+                abstract.show = function () {
+                    this._div.classList.remove("abstract");
+                    this._div.classList.add("abstractUncollapsed");
+                    this._div.innerHTML = 'Finland\'s coastal waters and open sea areas have eutrophicated due to excessive nutrient loading. Phosphorus is a useful nutrient in primary production, but in excessive amounts it causes eutrophication and oxygen loss in water bodies. <br /><br />Phosphorus ends up in the sea through erosion, for example through rivers. In the Archipelago Sea, two factors; agriculture and natural leaching make up a total of 86 % of the total phosphorus load ending up in the Archipelago Sea. <br /><br />The total phosphorus content indicates the total amount of phosphorus in the water, which is an important measure when evaluating water eutrophication. The measurement unit is µg/l (micrograms per liter) and 1 mg = 1000 µg. The nutrient classification based on the total phosphorus content is defined by Vesihallitus: <br /><br /><12 = barren, baby blue <br />12-30 = slightly eutrophic, blue<br />30-50 = eutrophic, navy blue <br />50-100 = very eutrophic, red <br />>100 = overly eutrophic, dark red <br /><br />As climate change progresses, mild and wet autumns and winters will become more common, and the amount of erosion and nutrient load is also believed to increase. There are ways to control and reduce the phosphorus load. The nutrient load from agriculture can be reduced, for example, by gypsum treating the fields and postponing autumnal tillage and plowing to next spring.';
+            };
+            abstract.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/PhosphorusMynlahti2023_16.png" /> Phosphorus Mynälahti 2023': layer_PhosphorusMynlahti2023_16,'<img src="legend/PhosphorusMynlahti2022_15.png" /> Phosphorus Mynälahti 2022': layer_PhosphorusMynlahti2022_15,'<img src="legend/PhosphorusMynlahti2021_14.png" /> Phosphorus Mynälahti 2021': layer_PhosphorusMynlahti2021_14,'<img src="legend/PhosphorusViurilanlahti2023_13.png" /> Phosphorus Viurilanlahti 2023': layer_PhosphorusViurilanlahti2023_13,'<img src="legend/PhosphorusViurilanlahti2022_12.png" /> Phosphorus Viurilanlahti 2022': layer_PhosphorusViurilanlahti2022_12,'<img src="legend/PhosphorusViurilanlahti2021_11.png" /> Phosphorus Viurilanlahti 2021': layer_PhosphorusViurilanlahti2021_11,'<img src="legend/PhosphorusPaimionselk2023_10.png" /> Phosphorus Paimionselkä 2023': layer_PhosphorusPaimionselk2023_10,'<img src="legend/PhosphorusPaimionselk2022_9.png" /> Phosphorus Paimionselkä 2022': layer_PhosphorusPaimionselk2022_9,'<img src="legend/PhosphorusPaimionselk2021_8.png" /> Phosphorus Paimionselkä 2021': layer_PhosphorusPaimionselk2021_8,"Interpolation Mynälahti 2021": layer_InterpolationMynlahti2021_7,"Interpolation Viurilanlahti 2022": layer_InterpolationViurilanlahti2022_6,"Interpolation Viurilanlahti 2021": layer_InterpolationViurilanlahti2021_5,"Interpolation Paimionselkä 2021": layer_InterpolationPaimionselk2021_4,'<img src="legend/Roads_3.png" /> Roads': layer_Roads_3,'<img src="legend/Rivers_2.png" /> Rivers': layer_Rivers_2,"Potential Field Erosion": layer_PotentialFieldErosion_1,'<img src="legend/Map_0.png" /> Map': layer_Map_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
